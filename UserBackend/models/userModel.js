@@ -4,23 +4,27 @@ const schema = mongoose.Schema;
 
 const UserSchema = new schema({
     userName: {
-        Type: String,
-        Required: true,
+        type: String,
+        required: true,
     },
     userEmail:{
-        Type: String,
-        Required: true,
+        type: String,
+        required: true,
     },
     userPhone: {
-        Type: Number,
-        Required: true,
+        type: Number,
+        required: true,
+    },
+    userGender: {
+        type: String,
+        required: true,
     },
     userImage:{
-        Type: String,
-        Required:  true,
+        type: String,
+        required:  true,
     },
 });
 
-const userModel = mongoose.model("userData", UserSchema);
+const userModel = mongoose.model("userdatas", UserSchema);
 
 module.exports = userModel;

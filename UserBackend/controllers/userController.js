@@ -66,9 +66,24 @@ const userUpdate = (async (req, res) => {
     });
 });
 
+const userDelete = (async(req, res) => {
+    const useID = req.body.userId;
+
+    await User.findByIdAndDelete( useID)
+    .then( () => {
+        res.json("User Deleted.");
+    })
+    .catch( (err) => {
+        res.json("User deletion failed.");
+    });
+
+});
+
+
 module.exports = {
     userCreate,
     userRead,
     userGet,
-    userUpdate
+    userUpdate,
+    userDelete
 };

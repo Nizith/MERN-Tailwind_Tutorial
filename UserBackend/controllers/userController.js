@@ -21,4 +21,18 @@ const userCreate = ((req, res) => {
     })
 });
 
-module.exports = userCreate;
+const userRead = ( (req, res) => {
+    User.find()
+    .then( (userData) => {
+        res.json(userData);
+    })
+    .catch( (err) => {
+        res.json(err)
+    })
+})
+
+module.exports = {
+    userCreate,
+    userRead
+
+};

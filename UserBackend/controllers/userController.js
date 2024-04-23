@@ -31,6 +31,9 @@ const userRead = ( (req, res) => {
     });
 });
 
+
+
+
 const userGet = ( async (req, res) => {
     const userID = req.params.userId;
 
@@ -42,6 +45,8 @@ const userGet = ( async (req, res) => {
         res.json(err);
     });
 });
+
+
 
 const userUpdate = (async (req, res) => {
     const userID = req.params.userId;
@@ -65,6 +70,8 @@ const userUpdate = (async (req, res) => {
         console.log(err);
     });
 });
+
+
 
 const userDelete = (async(req, res) => {
     const useID = req.body.userId;

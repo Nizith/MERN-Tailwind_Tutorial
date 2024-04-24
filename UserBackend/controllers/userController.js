@@ -16,7 +16,7 @@ const userCreate = ((req, res) => {
         res.json("User Created.");
     })
     .catch( (err) => {
-        res.json("User Creation failed.");
+        res.json("User Creation failed.")
         console.log(err);
     })
 });

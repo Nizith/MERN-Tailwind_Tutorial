@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 
+//create controller
 const userCreate = ((req, res) => {
     const { userName, userEmail, userPhone, userGender, userImage} = req.body;
 
@@ -21,6 +22,7 @@ const userCreate = ((req, res) => {
     })
 });
 
+//read controller
 const userRead = ( (req, res) => {
     User.find()
     .then( (userData) => {
@@ -33,7 +35,7 @@ const userRead = ( (req, res) => {
 
 
 
-
+//get one user details controller
 const userGet = ( async (req, res) => {
     const userID = req.params.userId;
 
@@ -47,7 +49,7 @@ const userGet = ( async (req, res) => {
 });
 
 
-
+//update controller
 const userUpdate = (async (req, res) => {
     const userID = req.params.userId;
 
@@ -72,7 +74,7 @@ const userUpdate = (async (req, res) => {
 });
 
 
-
+//delete controller
 const userDelete = (async(req, res) => {
     const useID = req.body.userId;
 

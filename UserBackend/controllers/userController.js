@@ -2,7 +2,9 @@ const User = require("../models/userModel");
 
 //create controller
 const userCreate = ((req, res) => {
-    const { userName, userEmail, userPhone, userGender, userImage} = req.body;
+    const { userName, userEmail, userPhone, userGender} = req.body;
+
+    const userImage = req.file.filename;
 
     const newUser = new User({
         userName,
@@ -76,14 +78,15 @@ const userUpdate = (async (req, res) => {
 
 //delete controller
 const userDelete = (async(req, res) => {
-    const useID = req.body.userId;
+    const userID = req.params.userId;
 
-    await User.findByIdAndDelete( useID)
+    await User.findByIdAndDelete( userID)
     .then( () => {
         res.json("User Deleted.");
     })
     .catch( (err) => {
         res.json("User deletion failed.");
+        console.log(err);
     });
 
 });

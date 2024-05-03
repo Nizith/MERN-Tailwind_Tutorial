@@ -5,7 +5,7 @@ const schema = mongoose.Schema;
 
 // Define a Yup schema for validation
 const userSchemaValidation = yup.object().shape({
-    userName: yup.string().min(5, "UserName is too short").max(50).required(),
+    userName: yup.string().min(5, "UserName is too short").max(50, "Username is too long").required(),
     userEmail: yup.string().email().required(), 
     userPhone: yup.string().matches(/^7\d{8}$/, "Mobile number must start with '07'").required(),
     userGender: yup.string().required(),

@@ -1,13 +1,23 @@
 const mongoose = require("mongoose");
+const yup = require("yup");
 
 const schema = mongoose.Schema;
+
+// Define a Yup schema for validation
+const userSchemaValidation = yup.object().shape({
+    userName: yup.string().min(5, "UserName is too short").max(50).required(),
+    userEmail: yup.string().email().required(), 
+    userPhone: yup.string().matches(/^7\d{8}$/, "Mobile number must start with '7'").required(),
+    userGender: yup.string().required(),
+    userImage: yup.string().required(),
+});
 
 const UserSchema = new schema({
     userName: {
         type: String,
         required: true,
     },
-    userEmail:{
+    userEmail: {
         type: String,
         required: true,
     },
@@ -19,10 +29,20 @@ const UserSchema = new schema({
         type: String,
         required: true,
     },
-    userImage:{
+    userImage: {
         type: String,
-        required:  true,
+        required: true,
     },
+});
+
+// Add a pre-save hook to validate the data before saving it to the database
+UserSchema.pre('save', async function(next) {
+    try {
+        await userSchemaValidation.validate(this.toObject());
+        next();
+    } catch (error) {
+        next(error);
+    }
 });
 
 const userModel = mongoose.model("userdetail", UserSchema);

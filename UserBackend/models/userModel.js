@@ -7,7 +7,7 @@ const schema = mongoose.Schema;
 const userSchemaValidation = yup.object().shape({
     userName: yup.string().min(5, "UserName is too short").max(50).required(),
     userEmail: yup.string().email().required(), 
-    userPhone: yup.string().matches(/^7\d{8}$/, "Mobile number must start with '7'").required(),
+    userPhone: yup.string().matches(/^7\d{8}$/, "Mobile number must start with '07'").required(),
     userGender: yup.string().required(),
     userImage: yup.string().required(),
 });

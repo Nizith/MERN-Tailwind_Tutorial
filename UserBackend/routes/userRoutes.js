@@ -10,7 +10,7 @@ router.post('/user/create',(upload.single('userImage')), UserObject.userCreate);
 //read route
 
 //image folder accessing
-router.use('/uploads', express.static( path.join(__dirname, '../uploads')));
+router.use('/user/uploads', express.static( path.join(__dirname, '../uploads')));
 
 router.get('/user/read', UserObject.userRead);
 

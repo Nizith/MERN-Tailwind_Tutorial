@@ -23,5 +23,5 @@ mongoose.connect( MONGODB_URL )
 const userRoute = require("./routes/userRoutes.js");
 app.use(userRoute);
 
-const useSignInRoute = require("./routes/signInRoutes.js");
-app.use(useSignInRoute);
+const userSignUpRoute = require("./routes/userSignUpRoutes.js");
+app.use(userSignUpRoute);

@@ -6,7 +6,7 @@ import { BsTwitterX } from "react-icons/bs";
 
 export default function Footer() {
     return (
-        <div className="fixed bottom-0 w-full">
+        <div className="fixed bottom-0 w-full z-10">
             <hr className="w-10/12 mx-auto my-5" />
             <div>
                 <h1 className="text-center text-emerald-800 font-extrabold text-4xl">𝓟𝓘𝓒𝓣𝓞𝓡𝓘𝓐</h1>
@@ -23,10 +23,10 @@ export default function Footer() {
             <div>
                 <div>
                     <ul className="flex justify-center gap-10 font-bold text-neutral-100 text-3xl">
-                        <li className="hover:text-emerald-800 hover:duration-300"><a href=""><FaSquareFacebook /></a></li>
-                        <li className="hover:text-emerald-800  hover:duration-300"><a href=""><FaInstagram /></a></li>
-                        <li className="hover:text-emerald-800  hover:duration-300"><a href=""><FaWhatsapp /></a></li>
-                        <li className="hover:text-emerald-800"  hover:duration-300><a href=""><BsTwitterX /></a></li>
+                        <li className="hover:text-emerald-800 hover:duration-300"><a href="https://www.facebook.com/"><FaSquareFacebook /></a></li>
+                        <li className="hover:text-emerald-800  hover:duration-300"><a href="https://www.instagram.com/"><FaInstagram /></a></li>
+                        <li className="hover:text-emerald-800  hover:duration-300"><a href="https://www.whatsapp.com/"><FaWhatsapp /></a></li>
+                        <li className="hover:text-emerald-800"  hover:duration-300><a href="https://x.com/home"><BsTwitterX /></a></li>
                     </ul>
                 </div>
             </div>

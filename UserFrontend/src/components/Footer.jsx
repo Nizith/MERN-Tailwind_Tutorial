@@ -6,7 +6,7 @@ import { BsTwitterX } from "react-icons/bs";
 
 export default function Footer() {
     return (
-        <div className="fixed bottom-0 w-full z-10">
+        <div>
             <hr className="w-10/12 mx-auto my-5" />
             <div>
                 <h1 className="text-center text-emerald-800 font-extrabold text-4xl">𝓟𝓘𝓒𝓣𝓞𝓡𝓘𝓐</h1>

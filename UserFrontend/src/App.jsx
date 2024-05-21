@@ -3,19 +3,18 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './components/Home';
+import SignUp from './components/SignUp';
 
 function App() {
 
   return (
     <Router>
       <>
-        <Navbar />
         <div className='App flex flex-col min-h-screen'>
           <Routes>
-            <Route path='/' element={< Home />} />
+            <Route path='/' element={< SignUp />}/>
           </Routes>
         </div>
-        <Footer />
       </>
     </Router>
   )

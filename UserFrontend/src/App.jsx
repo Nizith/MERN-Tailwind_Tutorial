@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
+import Welcome from './components/Welcome';
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
       <>
         <div className='App flex flex-col min-h-screen'>
           <Routes>
-            <Route path='/' element={< SignUp />}/>
+            <Route path='/' element={< Welcome />}/>
+            <Route path='/signup' element={< SignUp />}/>
           </Routes>
         </div>
       </>

@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const PORT = 6000;
+const PORT = 4600;
 app.listen(PORT, () => { console.log(`App is running on PORT : ${ PORT }`)});
 
 const MONGODB_URL = 'mongodb+srv://nizith:nizcluster1@nizitp.3t6k8bi.mongodb.net/MERN-Tailwind_Tutorial'

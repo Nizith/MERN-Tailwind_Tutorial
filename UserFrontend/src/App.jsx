@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
 import Welcome from './components/Welcome';
+import SignIn from './components/SignIn';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path='/' element={< Welcome />}/>
             <Route path='/signup' element={< SignUp />}/>
+            <Route path='/signin' element={< SignIn />} />
           </Routes>
         </div>
       </>

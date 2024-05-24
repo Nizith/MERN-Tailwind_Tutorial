@@ -20,13 +20,14 @@ export default function SignUp() {
         });
 
 
-        axios.post("http://localhost:6000/user/signUp", newUser)
+        axios.post("http://localhost:4600/user/signUp", newUser)
             .then(() => {
                 alert("User signed up successfully");
             })
             .catch((err) => {
                 alert("User signup failed.");
                 console.error(err);
+                console.log(err);
             })
     }
 

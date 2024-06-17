@@ -23,7 +23,7 @@ export default function SignIn() {
             axios.post('http://localhost:4600/user/signIn', { username, password })
                 .then(() => {
                     alert("User signed in successfully");
-                    navigate('/profile');
+                    navigate('/adduser');
                 })
                 .catch((err) => {
                     console.error(err);
@@ -36,16 +36,16 @@ export default function SignIn() {
     });
 
     return (
-        <div className="h-screen flex justify-center">
-            <div className="bg-slate-800 p-10 rounded-2xl mx-auto my-auto">
+        <div className="m-auto w-screen">
+            <div className="w-1/3 bg-slate-800 p-10 rounded-2xl m-auto">
                 <h1 className="font-bold text-amber-300 text-3xl flex justify-center -mt-6 mb-6">Log In</h1>
-                <form onSubmit={formik.handleSubmit} className="text-amber-300 text-start text-lg">
+                <form onSubmit={formik.handleSubmit} className="text-amber-300 text-start">
                     <div className="mb-5">
                         <label htmlFor="username" className="block mb-1.5">Username :</label>
                         <input
                             id="username"
                             type="text"
-                            className="text-neutral-200 w-96 outline-0 bg-slate-800 border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-900"
+                            className="w-full outline-0 bg-inherit border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-800"
                             {...formik.getFieldProps('username')}
                         />
                         {formik.touched.username && formik.errors.username ? (
@@ -57,7 +57,7 @@ export default function SignIn() {
                         <input
                             id="password"
                             type="password"
-                            className="text-neutral-200 w-96 outline-0 bg-slate-800 border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-900"
+                            className="w-full outline-0 bg-inherit border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-900"
                             {...formik.getFieldProps('password')}
                         />
                         {formik.touched.password && formik.errors.password ? (

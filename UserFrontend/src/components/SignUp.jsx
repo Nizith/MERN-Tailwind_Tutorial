@@ -2,8 +2,12 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+
+    const navigate = useNavigate();
+
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -24,6 +28,7 @@ export default function SignUp() {
             axios.post("http://localhost:4600/user/signUp", newUser)
                 .then(() => {
                     alert("User signed up successfully");
+                    navigate('/adduser');
                 })
                 .catch((err) => {
                     alert("User signup failed.");
@@ -36,8 +41,8 @@ export default function SignUp() {
     });
 
     return (
-        <div className="h-screen flex justify-center">
-            <div className="bg-slate-800 p-10 rounded-2xl mx-auto my-auto">
+        <div className="m-auto w-screen">
+            <div className="w-1/3 bg-slate-800 p-10 rounded-2xl m-auto">
                 <h1 className="font-bold text-amber-300 text-3xl flex justify-center -mt-6 mb-6">Register</h1>
                 <form onSubmit={formik.handleSubmit} className="text-amber-300 text-start">
                     <div className="mb-5">
@@ -46,7 +51,7 @@ export default function SignUp() {
                             id="username"
                             type="text"
                             placeholder="username@gmail.com"
-                            className="text-neutral-200 w-96 outline-0 bg-slate-800 border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-900"
+                            className="w-full outline-0 bg-inherit border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-900"
                             {...formik.getFieldProps('username')}
                         />
                         {formik.touched.username && formik.errors.username ? (
@@ -58,7 +63,7 @@ export default function SignUp() {
                         <input
                             id="password"
                             type="password"
-                            className="text-neutral-200 w-96 outline-0 bg-slate-800 border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-900"
+                            className="w-full outline-0 bg-inherit border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-900"
                             {...formik.getFieldProps('password')}
                         />
                         {formik.touched.password && formik.errors.password ? (
@@ -70,7 +75,7 @@ export default function SignUp() {
                         <input
                             id="reEnterPassword"
                             type="password"
-                            className="text-neutral-200 w-96 outline-0 bg-slate-800 border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-900"
+                            className="w-full outline-0 bg-inherit  border-b-2 rounded-md h-10 ps-3 border-neutral-200 focus:bg-slate-900"
                             {...formik.getFieldProps('reEnterPassword')}
                         />
                         {formik.touched.reEnterPassword && formik.errors.reEnterPassword ? (

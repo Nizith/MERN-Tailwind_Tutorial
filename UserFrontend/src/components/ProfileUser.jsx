@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { MdOutlineModeEdit } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileUser() {
+
+    const userId = useState();
+    const { navigate } = useNavigate();
 
     const [users, setUsers] = useState([]);
     const [isNameDisabled, setIsNameDisabled] = useState(true);
@@ -23,8 +27,20 @@ export default function ProfileUser() {
         ReadUsers();
     }, []);
 
+    function DeleteUser(userId) {
+        axios.delete(`http://localhost:4600/user/delete/${userId}`)
+            .then(() => {
+                alert("User deleted!");
+                navigate('/adduser')
+            })
+            .catch((err) => {
+                alert("Deletion Failed!", err);
+            })
+    }
+
     const enableEdit = (e, field) => {
         e.preventDefault();
+
         switch (field) {
             case "name":
                 setIsNameDisabled(false);
@@ -74,7 +90,7 @@ export default function ProfileUser() {
                             <label htmlFor="" className="block mb-2 text-amber-300">Email: {" "}</label>
                             <input
                                 type="text"
-                                className="w-full h-8 outline outline-none bg-inherit border-b-2 ps-3 2"
+                                className="w-full h-8 outline outline-none bg-inherit border-b-2 ps-3"
                                 value={user.userEmail}
                                 disabled={isEmailDisabled}
                             />
@@ -86,7 +102,7 @@ export default function ProfileUser() {
                             <label htmlFor="" className="block mb-2 text-amber-300">Phone: {" "}</label>
                             <input
                                 type="text"
-                                className="w-full h-8 outline outline-none bg-inherit border-b-2 ps-3 2"
+                                className="w-full h-8 outline outline-none bg-inherit border-b-2 ps-3"
                                 value={user.userPhone}
                                 disabled={isPhoneDisabled}
                             />
@@ -106,7 +122,11 @@ export default function ProfileUser() {
                                 <MdOutlineModeEdit className="size-5 text-amber-300" />
                             </button>
                         </div>
-                        <button type="submit" className="flex justify-center my-4 mt-7 ml-auto rounded-md py-1.5 px-4 text-md text-red-500 bg-slate-700 hover:outline outline-1 hover:outline-amber-300">Delete your profile</button>
+                        <button
+                            className="flex justify-center my-4 mt-7 ml-auto rounded-md py-1.5 px-4 text-md text-red-500 font-semibold bg-slate-700 hover:outline outline-1 hover:outline-amber-300"
+                            onClick={() => (DeleteUser(user._id))}>
+                            Delete your profile
+                        </button>
                     </form>
                 </div>
 

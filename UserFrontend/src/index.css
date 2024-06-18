@@ -1,3 +1,18 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@layer utilities {
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px #1e293b inset;
+        box-shadow: 0 0 0 1000px #1e293b inset;
+        -webkit-text-fill-color: #e5e5e5;
+        caret-color: #e5e5e5;
+    }
+    input:focus {
+        -webkit-box-shadow: 0 0 0 1000px #0f172a inset;
+        box-shadow: 0 0 0 1000px #0f172a inset;
+        -webkit-text-fill-color: #e5e5e5;
+        caret-color: #e5e5e5;
+    }
+}

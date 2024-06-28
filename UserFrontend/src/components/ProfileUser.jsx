@@ -121,6 +121,8 @@ function UpdateOperation({ user }) {
         });
     };
 
+    const [uploadImageName, setUploadimagename] = useState("No file selected.");
+
     return (
         <>
             <div className="w-3/5 m-auto bg-slate-800 rounded-xl flex justify-between">
@@ -128,9 +130,10 @@ function UpdateOperation({ user }) {
                 <form action="" className="w-full px-10 py-5 text-neutral-200 text-start" onSubmit={SubmitUpdateUser}>
 
 
+                    <span className="text-amber-300 font-bold">{uploadImageName}</span>
                     <div
-                        style={{ height: '3.85in' }}
-                        className="w-3/12 mt-2 absolute border-4 border-dashed rounded-lg border-amber-400 flex items-center justify-center"
+                        style={{ height: '3.8in' }}
+                        className="w-3/12 mt-3 absolute border-4 border-dashed rounded-lg border-amber-400 flex items-center justify-center"
                         onClick={() => document.querySelector(".img-upload").click()}>
 
                         <label htmlFor="userImage" className="flex flex-col items-center justify-center text-amber-300 text-2xl font-bold"><LuUpload className="absolute -mt-32 size-20" />Upload Here </label>
@@ -139,9 +142,17 @@ function UpdateOperation({ user }) {
                             accept="image/*"
                             type="file"
                             className="img-upload h-96 rounded-2xl"
-                            onChange={(e) => setUpdateUserimage(e.target.files[0])}
+                            onChange={(e) => {
+                                const file = e.target.files[0];
+                                if (file) {
+                                    setUpdateUserimage(file);
+                                    setUploadimagename(file.name);
+                                }
+                            }}
                         />
                     </div>
+
+
                     <div className="w-6/12 ml-auto">
                         <div className="mb-4">
                             <label htmlFor="userName" className="block mb-2 text-amber-300">Name: </label>

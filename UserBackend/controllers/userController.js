@@ -53,19 +53,24 @@ const userGet = ( async (req, res) => {
 
 //update controller
 const userUpdate = (async (req, res) => {
-    const userID = req.params.userId;
+    const userId = req.params.userId;
 
-    const { userName, userEmail, userPhone, userGender, userImage} = req.body;
+    const { userName, userEmail, userPhone, userGender} = req.body;
+
+    let userImage;
+    if (req.file) {
+        userImage = req.file.filename;
+    }
 
     const updateUser = {
         userName,
         userEmail,
         userPhone,
         userGender,
-        userImage,        
+        ...(userImage && { userImage })     
     };
 
-    await User.findByIdAndUpdate(userID, updateUser)
+    await User.findByIdAndUpdate(userId, updateUser)
     .then( () => {
         res.json("User Updated.");
     })

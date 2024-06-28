@@ -3,8 +3,23 @@ import axios from "axios";
 import { MdOutlineModeEdit, MdFileDownloadDone } from "react-icons/md";
 import { LuUpload } from "react-icons/lu";
 import { useNavigate, useParams } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
+import { GrUpdate } from "react-icons/gr";
 
 function ReadOperation({ details, onEdit }) {
+    const { navigate } = useNavigate();
+
+    function DeleteUser(userId) {
+        axios.delete(`http://localhost:4600/user/delete/${userId}`)
+            .then(() => {
+                toast.success("User deleted!");
+                navigate('/adduser')
+            })
+            .catch((err) => {
+                toast.error("User DeletionFailed!")
+            })
+    }
+
     return (
         <>
             {details.map((user) => (
@@ -14,7 +29,7 @@ function ReadOperation({ details, onEdit }) {
                         {user.userImage &&
 
                             <img src={`http://localhost:4600/user/uploads/${user.userImage}`}
-                                className="h-96 rounded-2xl"
+                                className="h-96 ml-10 rounded-2xl"
                                 alt="User image" />
                         }
                     </div>
@@ -114,8 +129,8 @@ function UpdateOperation({ user }) {
                 "Content-Type": "multipart/form-data",
             }
         }).then(() => {
-            alert("User updated successfully!");
-            navigate(`/profile/${user._id}`);
+            toast.success("User updated successfully!");
+            navigate('/profile');
         }).catch((err) => {
             alert("User updation failed!", err);
         });
@@ -252,6 +267,7 @@ export default function ProfileUser() {
 
     return (
         <div className="m-auto w-screen">
+            <Toaster />
             {userId ? (
                 selectedUser ? (
                     <UpdateOperation user={selectedUser} />

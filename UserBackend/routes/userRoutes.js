@@ -18,7 +18,7 @@ router.get('/user/read', UserObject.userRead);
 router.get('/user/get/:userId', UserObject.userGet);
 
 //update route
-router.put('/user/update/:userId',(upload.single('userImage')), UserObject.userUpdate);
+router.patch('/user/update/:userId',(upload.single('userImage')), UserObject.userUpdate);
 
 //delete route
 router.delete('/user/delete/:userId', UserObject.userDelete);

@@ -10,20 +10,26 @@ function ReadOperation({ details, onEdit }) {
     const { navigate } = useNavigate();
 
     function DeleteUser(userId) {
-        axios.delete(`http://localhost:4600/user/delete/${userId}`)
+        axios.delete(`http://localhost:4600/user/delte/${userId}`)
             .then(() => {
                 toast.success("User deleted!");
                 navigate('/adduser')
             })
             .catch((err) => {
-                toast.error("User DeletionFailed!")
+                
+                toast.custom(
+                    <div>
+                        <h3 className="text-indigo-600 bg-neutral-200 rounded-md px-10 py-1 font-bold">Delete Krn Ba</h3>
+                    </div>
+                )
+                navigate('/adduser')
             })
     }
 
     return (
         <>
             {details.map((user) => (
-                <div key={user._id} className="w-3/5 m-auto bg-slate-800 rounded-xl flex justify-between">
+                <div key={user._id} className="w-3/5 m-auto py-3 bg-slate-800 rounded-xl flex justify-between">
 
                     <div className="w-2/5 flex justify-center my-auto">
                         {user.userImage &&
@@ -124,12 +130,15 @@ function UpdateOperation({ user }) {
         formUpdateData.append("userGender", userGender);
         formUpdateData.append("userImage", userImage);
 
-        axios.put(`http://localhost:4600/user/update/${user._id}`, formUpdateData, {
+        axios.patch(`http://localhost:4600/user/update/${user._id}`, formUpdateData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             }
         }).then(() => {
-            toast.success("User updated successfully!");
+            toast.success("User updated successfully!", {
+                duration: 3000,
+                position: 'top-left'
+            });
             navigate('/profile');
         }).catch((err) => {
             alert("User updation failed!", err);
@@ -142,21 +151,20 @@ function UpdateOperation({ user }) {
         <>
             <div className="w-3/5 m-auto bg-slate-800 rounded-xl flex justify-between">
 
-                <form action="" className="w-full px-10 py-5 text-neutral-200 text-start" onSubmit={SubmitUpdateUser}>
+                <form action="" className="w-full px-10 py-8 text-neutral-200 text-start" onSubmit={SubmitUpdateUser}>
 
 
-                    <span className="text-amber-300 font-bold">{uploadImageName}</span>
                     <div
-                        style={{ height: '3.8in' }}
-                        className="w-3/12 mt-3 absolute border-4 border-dashed rounded-lg border-amber-400 flex items-center justify-center"
+                        style={{ width: '3.4in', height: '3.8in' }}
+                        className="mt-2 absolute border-4 border-dashed rounded-lg border-amber-400 flex items-center justify-center"
                         onClick={() => document.querySelector(".img-upload").click()}>
 
-                        <label htmlFor="userImage" className="flex flex-col items-center justify-center text-amber-300 text-2xl font-bold"><LuUpload className="absolute -mt-32 size-20" />Upload Here </label>
+                        <label htmlFor="userImage" className="flex flex-col items-center justify-center text-amber-300 text-2xl mt-10 font-bold"><LuUpload className="absolute -mt-28 size-20" />Upload Here </label>
                         <input
                             hidden
                             accept="image/*"
                             type="file"
-                            className="img-upload h-96 rounded-2xl"
+                            className="img-upload"
                             onChange={(e) => {
                                 const file = e.target.files[0];
                                 if (file) {
@@ -166,9 +174,10 @@ function UpdateOperation({ user }) {
                             }}
                         />
                     </div>
+                    <span className="absolute mt-96 text-amber-300 font-bold">{uploadImageName}</span>
 
 
-                    <div className="w-6/12 ml-auto">
+                    <div style={{width: '4.922in'}} className="ml-auto">
                         <div className="mb-4">
                             <label htmlFor="userName" className="block mb-2 text-amber-300">Name: </label>
                             <input
@@ -272,7 +281,7 @@ export default function ProfileUser() {
                 selectedUser ? (
                     <UpdateOperation user={selectedUser} />
                 ) : (
-                    <p>Loading...</p>
+                    <p></p>
                 )
             ) : (
                 <ReadOperation details={users} onEdit={handleEdit} />
